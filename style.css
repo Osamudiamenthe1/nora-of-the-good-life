@@ -193,7 +193,7 @@
     z-index: -2;
     background-image: var(--bg-image);
     background-size: cover;
-    background-position:center;
+    background-position:0 45%;
     background-repeat: no-repeat;
   }
 
