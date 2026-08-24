@@ -1,0 +1,541 @@
+  :root{
+    /* ===== BRAND COLORS — pink accent + supporting palette ===== */
+    --pink-primary: #FF5C8A;   /* main accent — buttons, highlights */
+    --pink-dark:    #E63E72;   /* hover state for pink elements */
+    --pink-light:   #FFE3EC;   /* soft pink — hover backgrounds, tints */
+    --coral:        #FF9166;   /* warm secondary — adds energy */
+    --plum:         #4A1942;   /* deep contrast — logo, confident text */
+    --cream:        #FFF8F5;   /* warm background instead of stark white */
+    --text-dark:    #3A2430;   /* body text — warm near-black */
+    --white:        #FFFFFF;
+    --navbar-height: 84px;
+  }
+
+  *{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  html{
+    scroll-behavior: smooth;
+  }
+
+  body{
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--cream);
+    color: var(--text-dark);
+  }
+
+  a{
+    text-decoration: none;
+    color: inherit;
+  }
+
+  /* ===== HEADER ===== */
+  .navbar{
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 16px;
+    padding: 18px 6%;
+    background-color: var(--white);
+    box-shadow: 0 2px 12px rgba(74, 25, 66, 0.08);
+  }
+
+  .logo{
+    font-family: 'Fredoka', sans-serif;
+    font-weight: 700;
+    font-size: 28px;
+    background: linear-gradient(90deg, var(--pink-primary), var(--coral));
+    -webkit-background-clip: text;
+    background-clip: text;
+    letter-spacing: 0.5px;
+  }
+
+  .nav-buttons{
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .nav-btn{
+    font-family: 'Poppins', sans-serif;
+    font-weight: 500;
+    font-size: 14.5px;
+    color: var(--plum);
+    background-color: transparent;
+    border: none;
+    padding: 10px 18px;
+    border-radius: 999px;
+    cursor: pointer;
+    transition: background-color 0.25s ease, color 0.25s ease, transform 0.2s ease;
+  }
+
+  .nav-btn:hover{
+    background-color: var(--pink-light);
+    color: var(--pink-dark);
+  }
+
+  .nav-btn:focus-visible{
+    outline: 2px solid var(--pink-primary);
+    outline-offset: 2px;
+  }
+
+  .nav-btn.cta{
+    background-color: var(--pink-primary);
+    color: var(--white);
+    font-weight: 600;
+    padding: 10px 22px;
+    box-shadow: 0 4px 14px rgba(255, 92, 138, 0.35);
+  }
+
+  .nav-btn.cta:hover{
+    background-color: var(--pink-dark);
+    transform: translateY(-1px);
+    box-shadow: 0 6px 18px rgba(230, 62, 114, 0.4);
+  }
+
+  @media (max-width: 720px){
+    .navbar{
+      justify-content: center;
+      text-align: center;
+    }
+    .nav-buttons{
+      justify-content: center;
+    }
+    .nav-btn{
+      font-size: 14px;
+      padding: 9px 14px;
+    }
+  }
+
+  /* =====================================================
+     PHOTO ZONES
+     A "photo zone" is a wrapper <div> that can hold ONE or
+     MORE <section> elements. Whatever image you set on
+     --bg-image shows faintly behind every section inside
+     that wrapper, so the picture flows continuously across
+     however many sections you put inside it.
+
+     HOW TO ADD YOUR IMAGES:
+     Find the three divs below with class="photo-zone" and
+     replace the url('...') inside the inline style="" with
+     the path to your photo, e.g. url('assets/nora-home.jpg')
+  ===================================================== */
+    .photo-zone-1{
+    position: relative;
+    isolation: isolate; /* keeps the background layers contained to this wrapper */
+  }
+
+    .photo-zone-1::before{
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -2;
+    background-image: var(--bg-image);
+    background-size: cover;
+    background-position: 0% 40%;
+    background-repeat: no-repeat;
+  }
+
+    /* Soft pink/cream wash over the photo so it stays gentle
+     and on-brand instead of a plain dimmed image */
+  .photo-zone-1::after{
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background: linear-gradient(180deg, rgba(255,248,245,0.90), rgba(255,227,236,0.10));
+  }
+
+  
+  .photo-zone-2{
+    position: relative;
+    isolation: isolate; /* keeps the background layers contained to this wrapper */
+  }
+
+  .photo-zone-2::before{
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -2;
+    background-image: var(--bg-image);
+    background-size: cover;
+    background-position: 0 45%;
+    background-repeat: no-repeat;
+  }
+
+  /* Soft pink/cream wash over the photo so it stays gentle
+     and on-brand instead of a plain dimmed image */
+  .photo-zone-2::after{
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background: linear-gradient(180deg, rgba(255,248,245,0.90), rgba(255,227,236,0.10));
+  }
+
+    .photo-zone-3{
+    position: relative;
+    isolation: isolate; /* keeps the background layers contained to this wrapper */
+  }
+
+    .photo-zone-3::before{
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -2;
+    background-image: var(--bg-image);
+    background-size: 100%;
+    background-position: 0 45%;
+    background-repeat: no-repeat;
+  }
+
+    /* Soft pink/cream wash over the photo so it stays gentle
+     and on-brand instead of a plain dimmed image */
+  .photo-zone-3::after{
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background: linear-gradient(180deg, rgba(255,248,245,0.90), rgba(255,227,236,0.10));
+  }
+
+
+
+
+  /* Fixed attachment gives a gentle parallax feel — desktop only,
+     since background-attachment:fixed is unreliable on mobile Safari */
+ @media (min-width: 1024px){
+  .photo-zone-1::before,
+  .photo-zone-2::before,
+  .photo-zone-3::before{
+    background-attachment: fixed;
+  }
+}
+
+  /* ===== SHARED SECTION STYLES ===== */
+  .section{
+    scroll-margin-top: var(--navbar-height);
+    padding: 110px 6%;
+    display: flex;
+    justify-content: center;
+  }
+
+  .section #home{
+    scroll-margin-top: var(--navbar-height);
+    padding-top: 10px 6%;
+    display: flex;
+    justify-content: center;
+  }
+
+  .section-inner{
+    width: 100%;
+    max-width: 720px;
+    text-align: center;
+  }
+
+  .section-inner-last{
+    width: 100%;
+    max-width: 720px;
+    text-align: bottom;
+  }
+
+  .eyebrow{
+    font-weight: 600;
+    font-size: 13px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--white);
+    margin-bottom: 10px;
+
+    display: inline-block;
+    padding: 5px 22px;
+    border-radius: 18px;
+
+    background: rgba(74, 25, 66, 0.45);   /* plum, translucent — photo still shows through */
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);   /* Safari needs the prefix */
+  }
+
+  .section h2{
+    font-family: 'Fredoka', sans-serif;
+    font-size: 34px;
+    color: var(--plum);
+    margin-bottom: 16px;
+  }
+
+  .section-text{
+    font-size: 16px;
+    line-height: 1.7;
+    color: var(--text-dark);
+  }
+
+  .brand-name{
+  font-family: 'Fredoka', sans-serif;
+  font-weight: 600;
+  color: var(--white);
+}
+
+ .section-text-about{
+  font-size: 16px;
+  line-height: 1.7;
+  color: var(--white);
+
+  display: inline-block;
+  padding: 14px 22px;
+  border-radius: 18px;
+
+  background: rgba(74, 25, 66, 0.45);   /* plum, translucent — photo still shows through */
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);   /* Safari needs the prefix */
+}
+  .btn{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 26px;
+    padding: 13px 30px;
+    border-radius: 999px;
+    font-weight: 600;
+    font-size: 15px;
+    width: fit-content;
+  }
+
+  .btn-primary{
+    background-color: var(--pink-primary);
+    color: var(--white);
+    box-shadow: 0 4px 14px rgba(255, 92, 138, 0.35);
+    transition: background-color 0.25s ease, transform 0.2s ease;
+  }
+
+  .btn-primary:hover{
+    background-color: var(--pink-dark);
+    transform: translateY(-1px);
+  }
+
+  #contact{
+  justify-content: flex-start;   /* horizontal — pushes it to the left */
+  align-items: flex-start;       /* vertical — pushes it to the top */
+  min-height: 100vh;             /* needed so "top" has room to mean something */
+}
+
+#contact .section-inner{
+  text-align: left;
+  max-width: 400px;              /* optional — stops text stretching edge-to-edge now that it's not centered */
+}
+
+/* ===== CONTACT LIST ===== */
+.contact-list{
+  margin-top: 26px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  align-items: flex-start;   /* ← add this: stops children stretching full width */
+}
+
+.contact-link{
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 14px 18px;
+  border-radius: 16px;
+  background: rgba(255,255,255,0.65);
+  border: 1px solid rgba(74,25,66,0.08);
+  transition: background-color 0.25s ease, transform 0.2s ease, border-color 0.25s ease;
+}
+
+.contact-link:hover{
+  background: var(--white);
+  border-color: var(--pink-primary);
+  transform: translateY(-1px);
+}
+
+.contact-link:focus-visible{
+  outline: 2px solid var(--pink-primary);
+  outline-offset: 2px;
+}
+
+.contact-icon{
+  flex-shrink: 0;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background-color: var(--pink-primary);
+  color: var(--white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.contact-icon svg{
+  width: 20px;
+  height: 20px;
+}
+
+.contact-icon--whatsapp{
+  background: transparent;   /* the image already has its own black circle */
+}
+
+.contact-icon--whatsapp img,
+.contact-icon--gmail img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;        /* keeps it clipped to a perfect circle even if the source PNG isn't perfectly cropped */
+}
+
+.contact-text{
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}
+
+.contact-label{
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--pink-dark);
+}
+
+.contact-value{
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--text-dark);
+}
+
+
+  /* ===== HOME ===== */
+  .hero-section #home{
+    min-height: calc(100vh - var(--navbar-height));
+    align-items: flex-start;
+    margin-top: 0;
+  }
+
+  .hero-heading{
+    font-family: 'Fredoka', sans-serif;
+    font-size: 56px;
+    color: var(--plum);
+    margin-bottom: 14px;
+  }
+
+  .hero-text{
+    font-size: 17px;
+    line-height: 1.7;
+  }
+
+  /* ===== CONTENT GRID ===== */
+  .content-grid{
+    margin-top: 36px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 20px;
+    text-align: left;
+  }
+
+  .content-card{
+    background-color: rgba(255,255,255,0.65);
+    border: 1px solid rgba(74,25,66,0.08);
+    border-radius: 16px;
+    padding: 22px;
+  }
+
+  .content-card h3{
+    font-family: 'Fredoka', sans-serif;
+    color: var(--pink-dark);
+    margin-bottom: 8px;
+  }
+
+  .content-card p{
+    font-size: 14px;
+    line-height: 1.6;
+  }
+
+  /* ===== PORTFOLIO GRID ===== */
+  .portfolio-grid{
+    margin-top: 36px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 20px;
+  }
+
+ .portfolio-item{
+  aspect-ratio: 1 / 1;
+  border-radius: 16px;
+  overflow: hidden;              /* ← add this: clips the image to the rounded corners */
+  border: 2px dashed rgba(74,25,66,0.25);
+  background-color: rgba(255,255,255,0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--plum);
+  font-size: 13px;
+}
+
+  .chop-life-1{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;             /* ← fills the box, crops overflow, no stretching */
+  object-position: center;       /* ← same idea as background-position, for <img> tags */
+  display: block;                /* removes the small gap browsers add under inline images */
+  }
+
+
+
+  /* ===== WORK WITH NORA (intentionally has no photo — solid color break) ===== */
+  .work-section{
+    background-color: var(--plum);
+  }
+
+  .collab-list{
+  list-style: none;          /* removes the default bullet so we can style our own */
+  margin-top: 22px;
+  text-align: left;
+  display: inline-block;     /* so the list can be centered by its parent .section-inner */
+}
+
+.collab-list li{
+  position: relative;
+  padding-left: 28px;
+  margin-bottom: 14px;
+  font-size: 15.5px;
+  line-height: 1.6;
+  color: rgba(255,255,255,0.85);
+}
+
+.collab-list li::before{
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 8px;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background-color: var(--coral);
+}
+
+  .work-section h2,
+  .work-section .eyebrow{
+    color: var(--white);
+  }
+
+  .work-section .section-text{
+    color: rgba(255,255,255,0.85);
+  }
+
+  .work-section .btn-primary{
+    background-color: var(--coral);
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .work-section .btn-primary:hover{
+    background-color: var(--pink-primary);
+  }
