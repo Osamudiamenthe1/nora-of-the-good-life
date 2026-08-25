@@ -192,8 +192,8 @@
     inset: 0;
     z-index: -2;
     background-image: var(--bg-image);
-    background-size: cover;
-    background-position:0 45%;
+    background-size: 100%;
+    background-position: 0 45%;
     background-repeat: no-repeat;
   }
 
@@ -247,29 +247,49 @@
     text-align: bottom;
   }
 
-  .eyebrow{
-    font-weight: 600;
-    font-size: 13px;
-    letter-spacing: 1.5px;
-    text-transform: uppercase;
-    color: var(--white);
-    margin-bottom: 10px;
+.eyebrow{
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-weight: 500;
+  font-size: 19px;
+  letter-spacing: 0.5px;
+  text-transform: none;
+  color: var(--plum);
 
-    display: inline-block;
-    padding: 5px 22px;
-    border-radius: 18px;
+  display: inline-block;
+  padding: 10px 26px;
+  margin-bottom: 22px;
+  border-radius: 999px;
 
-    background: rgba(74, 25, 66, 0.45);   /* plum, translucent — photo still shows through */
-    backdrop-filter: blur(6px);
-    -webkit-backdrop-filter: blur(6px);   /* Safari needs the prefix */
-  }
+  background: rgba(255, 248, 245, 0.75);
+  border: 1px solid rgba(74, 25, 66, 0.12);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+}
 
+.eyebrow::before,
+.eyebrow::after{
+  content: "";
+  width: 32px;
+  height: 1px;
+  background: var(--coral);
+  opacity: 0.6;
+}
   .section h2{
     font-family: 'Fredoka', sans-serif;
     font-size: 34px;
     color: var(--plum);
     margin-bottom: 16px;
   }
+
+  #about h2{
+  font-family: 'Playfair Display', serif;
+  font-weight: 500;
+  font-size: 30px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--plum);
+}
 
   .section-text{
     font-size: 16px;
@@ -283,18 +303,20 @@
   color: var(--white);
 }
 
- .section-text-about{
-  font-size: 16px;
-  line-height: 1.7;
-  color: var(--white);
+.section-text-about{
+  font-family: 'Poppins', sans-serif;
+  font-size: 15.5px;
+  line-height: 1.85;
+  color: var(--text-dark);
 
   display: inline-block;
-  padding: 14px 22px;
-  border-radius: 18px;
-
-  background: rgba(74, 25, 66, 0.45);   /* plum, translucent — photo still shows through */
-  backdrop-filter: blur(6px);
-  -webkit-backdrop-filter: blur(6px);   /* Safari needs the prefix */
+  max-width: 520px;
+  padding: 24px 28px;
+  border-radius: 40px;
+  border: 1px solid rgba(74, 25, 66, 0.18);
+  background: rgba(255, 255, 255, 0.55);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
 }
   .btn{
     display: flex;
@@ -391,6 +413,19 @@
   border-radius: 50%;        /* keeps it clipped to a perfect circle even if the source PNG isn't perfectly cropped */
 }
 
+.contact-icon--instagram{
+  background: transparent;   /* the image already has its own shape/background */
+  border-radius: 26%;        /* squircle — rounded corners, not a full circle */
+  overflow: hidden;          /* clips the image to that rounded-square shape */
+}
+
+.contact-icon--instagram img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 26%;        /* match the parent so corners round consistently */
+}
+
 .contact-text{
   display: flex;
   flex-direction: column;
@@ -413,23 +448,31 @@
 
 
   /* ===== HOME ===== */
-  .hero-section #home{
-    min-height: calc(100vh - var(--navbar-height));
-    align-items: flex-start;
-    margin-top: 0;
-  }
+.hero-section{
+  min-height: calc(100vh - var(--navbar-height));
+  align-items: flex-start;
+  margin-top: 0;
+  padding-top: 60px;
+}
 
   .hero-heading{
-    font-family: 'Fredoka', sans-serif;
-    font-size: 56px;
-    color: var(--plum);
-    margin-bottom: 14px;
-  }
+  font-family: 'Playfair Display', serif;
+  font-weight: 500;
+  font-size: 64px;
+  line-height: 1.05;
+  letter-spacing: -0.5px;
+  color: var(--plum);
+  margin-bottom: 22px;
+}
 
-  .hero-text{
-    font-size: 17px;
-    line-height: 1.7;
-  }
+.hero-text{
+  font-family: 'Poppins', sans-serif;
+  font-size: 16px;
+  line-height: 1.85;
+  color: var(--text-dark);
+  max-width: 480px;
+  margin: 0 auto;   /* ← add this: centers the box itself within .section-inner */
+}
 
   /* ===== CONTENT GRID ===== */
   .content-grid{
@@ -470,7 +513,6 @@
   aspect-ratio: 1 / 1;
   border-radius: 16px;
   overflow: hidden;              /* ← add this: clips the image to the rounded corners */
-  border: 2px dashed rgba(74,25,66,0.25);
   background-color: rgba(255,255,255,0.5);
   display: flex;
   align-items: center;
@@ -479,11 +521,48 @@
   font-size: 13px;
 }
 
-  .chop-life-1{
+.portfolio-item a{
+  display: block;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+}
+
+.portfolio-item img{
+  transition: transform 0.3s ease;
+}
+
+.portfolio-item a:hover img{
+  transform: scale(1.06);
+}
+
+  .portfolio-1{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;             /* ← fills the box, crops overflow, no stretching */
+  object-position: top;       /* ← same idea as background-position, for <img> tags */
+  display: block;                /* removes the small gap browsers add under inline images */
+  }
+
+  .portfolio-2, 
+  .portfolio-3, 
+  .portfolio-4, 
+  .portfolio-5,
+  .portfolio-7,
+  .portfolio-8,
+  .portfolio-9{
   width: 100%;
   height: 100%;
   object-fit: cover;             /* ← fills the box, crops overflow, no stretching */
   object-position: center;       /* ← same idea as background-position, for <img> tags */
+  display: block;                /* removes the small gap browsers add under inline images */
+  }
+
+  .portfolio-6{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;             /* ← fills the box, crops overflow, no stretching */
+  object-position: 0 -60px;       /* ← same idea as background-position, for <img> tags */
   display: block;                /* removes the small gap browsers add under inline images */
   }
 
