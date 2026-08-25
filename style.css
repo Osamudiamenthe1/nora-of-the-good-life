@@ -115,110 +115,244 @@
     }
   }
 
-  /* =====================================================
-     PHOTO ZONES
-     A "photo zone" is a wrapper <div> that can hold ONE or
-     MORE <section> elements. Whatever image you set on
-     --bg-image shows faintly behind every section inside
-     that wrapper, so the picture flows continuously across
-     however many sections you put inside it.
+/* =====================================================
+   PHOTO ZONES
+   A "photo zone" is a wrapper <div> that can hold ONE or
+   MORE <section> elements.
 
-     HOW TO ADD YOUR IMAGES:
-     Find the three divs below with class="photo-zone" and
-     replace the url('...') inside the inline style="" with
-     the path to your photo, e.g. url('assets/nora-home.jpg')
-  ===================================================== */
-    .photo-zone-1{
-    position: relative;
-    isolation: isolate; /* keeps the background layers contained to this wrapper */
-  }
+   Whatever image you set on --bg-image will appear
+   behind every section inside that wrapper, allowing
+   the picture to flow continuously across the sections.
 
-    .photo-zone-1::before{
-    content: "";
-    position: absolute;
-    inset: 0;
-    z-index: -2;
-    background-image: var(--bg-image);
-    background-size: cover;
-    background-position: 0% 40%;
-    background-repeat: no-repeat;
-  }
-
-    /* Soft pink/cream wash over the photo so it stays gentle
-     and on-brand instead of a plain dimmed image */
-  .photo-zone-1::after{
-    content: "";
-    position: absolute;
-    inset: 0;
-    z-index: -1;
-    background: linear-gradient(180deg, rgba(255,248,245,0.90), rgba(255,227,236,0.10));
-  }
-
-  
-  .photo-zone-2{
-    position: relative;
-    isolation: isolate; /* keeps the background layers contained to this wrapper */
-  }
-
-  .photo-zone-2::before{
-    content: "";
-    position: absolute;
-    inset: 0;
-    z-index: -2;
-    background-image: var(--bg-image);
-    background-size: cover;
-    background-position: 0 45%;
-    background-repeat: no-repeat;
-  }
-
-  /* Soft pink/cream wash over the photo so it stays gentle
-     and on-brand instead of a plain dimmed image */
-  .photo-zone-2::after{
-    content: "";
-    position: absolute;
-    inset: 0;
-    z-index: -1;
-    background: linear-gradient(180deg, rgba(255,248,245,0.90), rgba(255,227,236,0.10));
-  }
-
-    .photo-zone-3{
-    position: relative;
-    isolation: isolate; /* keeps the background layers contained to this wrapper */
-  }
-
-    .photo-zone-3::before{
-    content: "";
-    position: absolute;
-    inset: 0;
-    z-index: -2;
-    background-image: var(--bg-image);
-    background-size: 100%;
-    background-position: 0 45%;
-    background-repeat: no-repeat;
-  }
-
-    /* Soft pink/cream wash over the photo so it stays gentle
-     and on-brand instead of a plain dimmed image */
-  .photo-zone-3::after{
-    content: "";
-    position: absolute;
-    inset: 0;
-    z-index: -1;
-    background: linear-gradient(180deg, rgba(255,248,245,0.90), rgba(255,227,236,0.10));
-  }
+   RESPONSIVE BEHAVIOR:
+   - Desktop: image covers the entire photo zone
+   - Tablet: image remains responsive and centered
+   - Mobile: image covers the entire zone without stretching
+   - Images are never distorted
+   ===================================================== */
 
 
+/* ===== GENERAL PHOTO ZONE SETTINGS ===== */
+
+.photo-zone-1,
+.photo-zone-2,
+.photo-zone-3 {
+  position: relative;
+
+  /* Keeps the background layers contained inside
+     their respective photo zone */
+  isolation: isolate;
+
+  /* Prevents the background from creating
+     unwanted overflow outside the section */
+  overflow: hidden;
+}
 
 
-  /* Fixed attachment gives a gentle parallax feel — desktop only,
-     since background-attachment:fixed is unreliable on mobile Safari */
- @media (min-width: 1024px){
+/* =====================================================
+   BACKGROUND IMAGE
+   ===================================================== */
+
+
+.photo-zone-1::before,
+.photo-zone-2::before,
+.photo-zone-3::before {
+
+  /* Required for the pseudo-element to appear */
+  content: "";
+
+  /* Makes the background layer cover the
+     entire photo zone */
+  position: absolute;
+  inset: 0;
+
+  /* Places the image behind the content */
+  z-index: -2;
+
+  /* Uses the image specified in the HTML:
+     style="--bg-image:url('...')" */
+  background-image: var(--bg-image);
+
+  /* Makes the image fill the entire section
+     while keeping its original proportions.
+
+     IMPORTANT:
+     "cover" prevents stretching/distortion,
+     but may crop some parts of the image. */
+  background-size: cover;
+
+  /* Stops the image from repeating */
+  background-repeat: no-repeat;
+
+  /* Keeps the center of the photograph visible */
+  background-position: center center;
+}
+
+  /* ===== PHOTO 1 — HOME + ABOUT ===== */
+
+.photo-zone-1::before {
+
+  /* Keeps more of the upper part of the photograph
+     visible so the head isn't hidden behind the header */
+  background-position: center 40%;
+}
+
+/* =====================================================
+   SOFT COLOR OVERLAY
+   This creates the gentle pink/cream appearance
+   over the photographs.
+   ===================================================== */
+
+.photo-zone-1::after,
+.photo-zone-2::after,
+.photo-zone-3::after {
+
+  content: "";
+
+  /* Makes the overlay cover the entire photo zone */
+  position: absolute;
+  inset: 0;
+
+  /* Places the overlay above the image but
+     underneath the website content */
+  z-index: -1;
+
+  /* Soft cream/pink gradient over the photograph */
+  background: linear-gradient(
+    180deg,
+    rgba(255, 248, 245, 0.90),
+    rgba(255, 227, 236, 0.10)
+  );
+}
+
+
+/* =====================================================
+   DESKTOP
+   Screens 1024px and wider
+   ===================================================== */
+
+@media (min-width: 1024px) {
+
   .photo-zone-1::before,
   .photo-zone-2::before,
-  .photo-zone-3::before{
+  .photo-zone-3::before {
+
+    /* Gives the desktop version a gentle
+       parallax effect while scrolling */
     background-attachment: fixed;
   }
+
 }
+
+
+/* =====================================================
+   TABLET
+   Screens between 721px and 1023px
+   ===================================================== */
+
+@media (min-width: 721px) and (max-width: 1023px) {
+
+  .photo-zone-1::before {
+
+    /* Controls which part of image 1 stays visible */
+    background-position: center 40%;
+  }
+
+  .photo-zone-2::before {
+
+    /* Controls which part of image 2 stays visible */
+    background-position: center 45%;
+  }
+
+  .photo-zone-3::before {
+
+    /* Controls which part of image 3 stays visible */
+    background-position: center 45%;
+  }
+
+}
+
+
+/* =====================================================
+   MOBILE / PORTRAIT
+   Screens 720px and below
+   ===================================================== */
+
+@media (max-width: 720px) {
+
+  .photo-zone-1::before,
+  .photo-zone-2::before,
+  .photo-zone-3::before {
+
+    /* Makes sure the photograph fills the
+       portrait screen without distortion */
+    background-size: cover;
+
+    /* Fixed backgrounds can behave badly on
+       phones, especially mobile Safari.
+
+       "scroll" makes the background move normally
+       with the page. */
+    background-attachment: scroll;
+  }
+
+
+  /* ===== PHOTO 1 — HOME + ABOUT ===== */
+
+  .photo-zone-1::before {
+
+    /* Keeps the middle of image 1 visible
+       on narrow portrait screens */
+    background-position: center center;
+  }
+
+
+  /* ===== PHOTO 2 — CONTENT + PORTFOLIO ===== */
+
+  .photo-zone-2::before {
+
+    /* Keeps the middle of image 2 visible
+       on narrow portrait screens */
+    background-position: center center;
+  }
+
+
+  /* ===== PHOTO 3 — CONTACT ===== */
+
+  .photo-zone-3::before {
+
+    /* Keeps the middle of image 3 visible
+       on narrow portrait screens */
+    background-position: center center;
+  }
+
+}
+
+
+/* =====================================================
+   IMPORTANT NOTE:
+   
+   "background-size: cover" keeps the image from
+   stretching or becoming distorted.
+
+   However, because phone screens are much taller
+   and narrower than desktop screens, some parts of
+   a wide photograph may be cropped.
+
+   If a person's face/body is being cropped on mobile,
+   change the background-position, for example:
+
+   background-position: 60% center;
+
+   or:
+
+   background-position: 40% center;
+
+   The percentage controls which part of the image
+   stays visible.
+   ===================================================== */
+
+
 
   /* ===== SHARED SECTION STYLES ===== */
   .section{
