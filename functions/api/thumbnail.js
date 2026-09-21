@@ -1,19 +1,23 @@
 // functions/api/thumbnail.js
 
 export async function onRequestGet(context) {
-  const url = new URL(context.request.url).searchParams.get('url');
+  const url = new URL(context.request.url).searchParams.get("url");
   if (!url) {
-    return Response.json({ success: false, error: 'Missing url' }, { status: 400 });
+    return Response.json(
+      { success: false, error: "Missing url" },
+      { status: 400 },
+    );
   }
 
   // 1. Try OpenGraph scrape
   try {
     const res = await fetch(url, {
       headers: {
-        'User-Agent': 'Mozilla/5.0 (compatible; NoraBot/1.0; +https://nora.pages.dev)',
-        'Accept': 'text/html'
+        "User-Agent":
+          "Mozilla/5.0 (compatible; NoraBot/1.0; +https://nora.pages.dev)",
+        Accept: "text/html",
       },
-      redirect: 'follow'
+      redirect: "follow",
     });
     const html = await res.text();
 
@@ -30,7 +34,7 @@ export async function onRequestGet(context) {
         return Response.json({
           success: true,
           thumbnail: match[1],
-          source: 'opengraph'
+          source: "opengraph",
         });
       }
     }
@@ -39,10 +43,10 @@ export async function onRequestGet(context) {
   }
 
   // 2. TikTok oEmbed fallback
-  if (url.includes('tiktok.com')) {
+  if (url.includes("tiktok.com")) {
     try {
       const oembed = await fetch(
-        `https://www.tiktok.com/oembed?url=${encodeURIComponent(url)}`
+        `https://www.tiktok.com/oembed?url=${encodeURIComponent(url)}`,
       );
       if (oembed.ok) {
         const data = await oembed.json();
@@ -50,7 +54,7 @@ export async function onRequestGet(context) {
           return Response.json({
             success: true,
             thumbnail: data.thumbnail_url,
-            source: 'tiktok-oembed'
+            source: "tiktok-oembed",
           });
         }
       }
@@ -58,28 +62,35 @@ export async function onRequestGet(context) {
   }
 
   // 3. YouTube — extract video ID and use their thumbnail service
-  if (url.includes('youtube.com') || url.includes('youtu.be')) {
+  if (url.includes("youtube.com") || url.includes("youtu.be")) {
     const idMatch = url.match(/(?:v=|youtu\.be\/|shorts\/)([a-zA-Z0-9_-]{11})/);
     if (idMatch) {
       return Response.json({
         success: true,
         thumbnail: `https://img.youtube.com/vi/${idMatch[1]}/maxresdefault.jpg`,
-        source: 'youtube'
+        source: "youtube",
       });
     }
   }
 
   // 4. Instagram — public oEmbed is unreliable, so fail gracefully
-  if (url.includes('instagram.com')) {
-    return Response.json({
-      success: false,
-      error: 'Instagram thumbnails require manual upload or a Meta app token.'
-    }, { status: 404 });
+  if (url.includes("instagram.com")) {
+    return Response.json(
+      {
+        success: false,
+        error:
+          "Instagram thumbnails require manual upload or a Meta app token.",
+      },
+      { status: 404 },
+    );
   }
 
   // 5. Nothing worked
-  return Response.json({
-    success: false,
-    error: 'Could not extract thumbnail. Please upload manually.'
-  }, { status: 404 });
+  return Response.json(
+    {
+      success: false,
+      error: "Could not extract thumbnail. Please upload manually.",
+    },
+    { status: 404 },
+  );
 }
