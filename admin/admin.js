@@ -13,6 +13,111 @@ const loginForm = document.getElementById("login-form");
 const loginError = document.getElementById("login-error");
 const logoutBtn = document.getElementById("logout");
 
+// ===================== AUTO LOGOUT (15 min idle) =====================
+const IDLE_TIMEOUT_MS = 15 * 60 * 1000; // 15 minutes of inactivity
+const WARNING_BEFORE_MS = 60 * 1000;    // show warning 60s before logout
+const LAST_ACTIVITY_KEY = "admin_last_activity";
+
+let idleTimer = null;
+let warningTimer = null;
+let countdownTick = null;
+let warningEl = null;
+
+function buildWarningEl() {
+  if (warningEl) return warningEl;
+
+  warningEl = document.createElement("div");
+  warningEl.className = "idle-warning hidden";
+  warningEl.innerHTML = `
+    <p>You'll be logged out in <strong id="idle-countdown">60</strong> seconds due to inactivity.</p>
+    <button id="idle-stay">Stay signed in</button>
+  `;
+  document.body.appendChild(warningEl);
+
+  document.getElementById("idle-stay").addEventListener("click", () => {
+    warningEl.classList.add("hidden");
+    clearInterval(countdownTick);
+    resetIdleTimer();
+  });
+
+  return warningEl;
+}
+
+function showWarning() {
+  const el = buildWarningEl();
+  el.classList.remove("hidden");
+
+  let secondsLeft = Math.floor(WARNING_BEFORE_MS / 1000);
+  const countEl = document.getElementById("idle-countdown");
+  if (countEl) countEl.textContent = secondsLeft;
+
+  clearInterval(countdownTick);
+  countdownTick = setInterval(() => {
+    secondsLeft -= 1;
+    if (countEl) countEl.textContent = Math.max(0, secondsLeft);
+    if (secondsLeft <= 0) clearInterval(countdownTick);
+  }, 1000);
+}
+
+async function logoutDueToIdle() {
+  console.warn("[admin] Logging out due to inactivity");
+  localStorage.removeItem(LAST_ACTIVITY_KEY);
+  if (warningEl) warningEl.classList.add("hidden");
+  clearInterval(countdownTick);
+  await supabase.auth.signOut();
+  window.location.reload();
+}
+
+function resetIdleTimer() {
+  localStorage.setItem(LAST_ACTIVITY_KEY, Date.now().toString());
+
+  clearTimeout(idleTimer);
+  clearTimeout(warningTimer);
+
+  warningTimer = setTimeout(showWarning, IDLE_TIMEOUT_MS - WARNING_BEFORE_MS);
+  idleTimer = setTimeout(logoutDueToIdle, IDLE_TIMEOUT_MS);
+}
+
+function startIdleWatcher() {
+  const last = parseInt(localStorage.getItem(LAST_ACTIVITY_KEY) || "0", 10);
+  const elapsed = Date.now() - last;
+
+  if (last && elapsed >= IDLE_TIMEOUT_MS) {
+    logoutDueToIdle();
+    return;
+  }
+
+  const events = ["mousedown", "keydown", "scroll", "touchstart", "click"];
+  events.forEach((ev) =>
+    document.addEventListener(ev, resetIdleTimer, { passive: true })
+  );
+
+  if (last) {
+    const remaining = IDLE_TIMEOUT_MS - elapsed;
+    clearTimeout(idleTimer);
+    idleTimer = setTimeout(logoutDueToIdle, remaining);
+
+    clearTimeout(warningTimer);
+    warningTimer = setTimeout(
+      showWarning,
+      Math.max(0, remaining - WARNING_BEFORE_MS)
+    );
+  } else {
+    resetIdleTimer();
+  }
+}
+
+function stopIdleWatcher() {
+  const events = ["mousedown", "keydown", "scroll", "touchstart", "click"];
+  events.forEach((ev) => document.removeEventListener(ev, resetIdleTimer));
+
+  clearTimeout(idleTimer);
+  clearTimeout(warningTimer);
+  clearInterval(countdownTick);
+  if (warningEl) warningEl.classList.add("hidden");
+  localStorage.removeItem(LAST_ACTIVITY_KEY);
+}
+
 // ===================== AUTH =====================
 async function checkAuth() {
   const {
@@ -22,9 +127,11 @@ async function checkAuth() {
     loginView.classList.add("hidden");
     appView.classList.remove("hidden");
     loadAll();
+    startIdleWatcher();
   } else {
     loginView.classList.remove("hidden");
     appView.classList.add("hidden");
+    stopIdleWatcher();
   }
 }
 
@@ -45,6 +152,7 @@ loginForm.addEventListener("submit", async (e) => {
 });
 
 logoutBtn.addEventListener("click", async () => {
+  stopIdleWatcher();
   await supabase.auth.signOut();
   checkAuth();
 });
@@ -255,7 +363,6 @@ document
   });
 
 // ===================== HELPERS =====================
-
 async function tryAutoThumbnail(itemId, videoUrl) {
   try {
     const res = await fetch(
