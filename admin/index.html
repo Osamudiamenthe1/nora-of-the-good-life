@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nora CMS</title>
+  <link rel="stylesheet" href="admin.css">
+</head>
+<body>
+
+  <!-- ============ LOGIN VIEW ============ -->
+  <div id="login-view" class="view">
+    <form id="login-form">
+      <h1>Nora CMS</h1>
+      <p class="subtitle">Sign in to manage your site</p>
+      <input type="email" id="email" placeholder="Email" required autocomplete="email">
+      <input type="password" id="password" placeholder="Password" required autocomplete="current-password">
+      <button type="submit">Log In</button>
+      <p id="login-error" class="error"></p>
+    </form>
+  </div>
+
+  <!-- ============ APP VIEW ============ -->
+  <div id="app-view" class="view hidden">
+
+    <header class="cms-header">
+      <h1>Nora CMS</h1>
+      <div class="header-actions">
+        <a href="/" target="_blank" class="btn-ghost">View Site ↗</a>
+        <button id="logout" class="btn-ghost">Log Out</button>
+      </div>
+    </header>
+
+    <nav class="tabs">
+      <button data-tab="portfolio" class="tab active">Portfolio</button>
+      <button data-tab="contact" class="tab">Contact</button>
+      <button data-tab="content" class="tab">Content Cards</button>
+      <button data-tab="settings" class="tab">Site Text</button>
+    </nav>
+
+    <main class="cms-main">
+
+      <!-- ============ PORTFOLIO TAB ============ -->
+      <section id="tab-portfolio" class="tab-panel">
+
+        <div class="panel-head">
+          <h2>Portfolio Items</h2>
+          <button id="open-add-portfolio" class="btn-primary">+ Add Item</button>
+        </div>
+
+        <!-- Add form (hidden by default) -->
+        <form id="add-portfolio" class="add-form hidden">
+          <h3>New Portfolio Item</h3>
+
+          <label>
+            Title
+            <input name="title" placeholder="e.g. Chop Life" required>
+          </label>
+
+          <label>
+            Video URL
+            <input name="url" type="url" placeholder="https://www.tiktok.com/..." required>
+          </label>
+
+          <label>
+            Platform
+            <select name="platform">
+              <option value="tiktok">TikTok</option>
+              <option value="instagram">Instagram</option>
+              <option value="youtube">YouTube</option>
+              <option value="other">Other</option>
+            </select>
+          </label>
+
+          <label>
+            Thumbnail (optional)
+            <small>If auto-fetch fails, upload an image here.</small>
+            <input type="file" name="thumbnail" accept="image/*">
+          </label>
+
+          <div class="form-actions">
+            <button type="button" id="cancel-add-portfolio" class="btn-ghost">Cancel</button>
+            <button type="submit" class="btn-primary" id="add-portfolio-submit">Add Item</button>
+          </div>
+
+          <p id="add-portfolio-status" class="status"></p>
+        </form>
+
+        <div id="portfolio-list" class="item-list"></div>
+      </section>
+
+      <!-- ============ CONTACT TAB ============ -->
+      <section id="tab-contact" class="tab-panel hidden">
+        <div class="panel-head">
+          <h2>Contact Info</h2>
+          <button id="open-add-contact" class="btn-primary">+ Add Contact</button>
+        </div>
+
+        <form id="add-contact" class="add-form hidden">
+          <h3>New Contact</h3>
+
+          <label>
+            Platform
+            <select name="platform">
+              <option value="tiktok">TikTok</option>
+              <option value="instagram">Instagram</option>
+              <option value="whatsapp">WhatsApp</option>
+              <option value="email">Email</option>
+            </select>
+          </label>
+
+          <label>
+            Label
+            <input name="label" placeholder="e.g. TikTok" required>
+          </label>
+
+          <label>
+            Display value
+            <input name="value" placeholder="e.g. nora_of_the_goodlife" required>
+          </label>
+
+          <label>
+            Link (optional for email)
+            <input name="url" placeholder="https://...">
+          </label>
+
+          <div class="form-actions">
+            <button type="button" id="cancel-add-contact" class="btn-ghost">Cancel</button>
+            <button type="submit" class="btn-primary">Add Contact</button>
+          </div>
+        </form>
+
+        <div id="contact-list" class="item-list"></div>
+      </section>
+
+      <!-- ============ CONTENT TAB ============ -->
+      <section id="tab-content" class="tab-panel hidden">
+        <div class="panel-head">
+          <h2>Content Cards</h2>
+          <button id="open-add-content" class="btn-primary">+ Add Card</button>
+        </div>
+
+        <form id="add-content" class="add-form hidden">
+          <h3>New Content Card</h3>
+          <label>
+            Title
+            <input name="title" placeholder="e.g. Lifestyle" required>
+          </label>
+          <label>
+            Body
+            <textarea name="body" rows="4" required></textarea>
+          </label>
+          <div class="form-actions">
+            <button type="button" id="cancel-add-content" class="btn-ghost">Cancel</button>
+            <button type="submit" class="btn-primary">Add Card</button>
+          </div>
+        </form>
+
+        <div id="content-list" class="item-list"></div>
+      </section>
+
+      <!-- ============ SETTINGS TAB ============ -->
+      <section id="tab-settings" class="tab-panel hidden">
+        <h2>Site Text</h2>
+        <p class="panel-desc">Edit the text that appears on your public site.</p>
+        <div id="settings-list"></div>
+      </section>
+
+    </main>
+  </div>
+
+  <script type="module" src="admin.js"></script>
+</body>
+</html>

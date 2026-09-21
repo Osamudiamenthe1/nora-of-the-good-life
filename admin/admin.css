@@ -1,0 +1,474 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --pink: #FF5C8A;
+  --pink-dark: #E63E72;
+  --pink-light: #FFE3EC;
+  --plum: #4A1942;
+  --cream: #FFF8F5;
+  --text: #3A2430;
+  --border: #E8DDD5;
+  --gray: #8B7B75;
+}
+
+body {
+  font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  background: #F5F1EE;
+  color: var(--text);
+  line-height: 1.5;
+}
+
+.view {
+  min-height: 100vh;
+}
+
+.hidden {
+  display: none !important;
+}
+
+/* ============ LOGIN ============ */
+#login-form {
+  max-width: 380px;
+  margin: 12vh auto;
+  background: #fff;
+  padding: 40px 32px;
+  border-radius: 16px;
+  box-shadow: 0 20px 50px rgba(74, 25, 66, 0.1);
+}
+
+#login-form h1 {
+  font-size: 28px;
+  color: var(--plum);
+  margin-bottom: 4px;
+}
+
+.subtitle {
+  color: var(--gray);
+  font-size: 14px;
+  margin-bottom: 24px;
+}
+
+#login-form input {
+  width: 100%;
+  padding: 12px 14px;
+  margin-bottom: 12px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  font-size: 15px;
+  font-family: inherit;
+}
+
+#login-form input:focus {
+  outline: none;
+  border-color: var(--pink);
+}
+
+#login-form button {
+  width: 100%;
+  padding: 13px;
+  background: var(--pink);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  font-family: inherit;
+  transition: background 0.2s;
+}
+
+#login-form button:hover {
+  background: var(--pink-dark);
+}
+
+.error {
+  color: #d33;
+  margin-top: 12px;
+  font-size: 14px;
+  text-align: center;
+}
+
+/* ============ HEADER ============ */
+.cms-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 32px;
+  background: #fff;
+  border-bottom: 1px solid var(--border);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.cms-header h1 {
+  font-size: 20px;
+  color: var(--plum);
+}
+
+.header-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.btn-ghost {
+  padding: 8px 16px;
+  background: transparent;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  color: var(--text);
+  cursor: pointer;
+  font-size: 14px;
+  font-family: inherit;
+  text-decoration: none;
+  transition: all 0.2s;
+}
+
+.btn-ghost:hover {
+  background: var(--pink-light);
+  border-color: var(--pink);
+}
+
+.btn-primary {
+  padding: 10px 20px;
+  background: var(--pink);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  font-size: 14px;
+  font-family: inherit;
+  transition: background 0.2s;
+}
+
+.btn-primary:hover {
+  background: var(--pink-dark);
+}
+
+.btn-primary:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* ============ TABS ============ */
+.tabs {
+  display: flex;
+  gap: 4px;
+  padding: 12px 32px 0;
+  background: #fff;
+  border-bottom: 1px solid var(--border);
+  overflow-x: auto;
+}
+
+.tab {
+  padding: 10px 18px;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  border-radius: 8px 8px 0 0;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--gray);
+  font-family: inherit;
+  white-space: nowrap;
+  transition: all 0.15s;
+}
+
+.tab:hover {
+  color: var(--text);
+}
+
+.tab.active {
+  background: var(--pink-light);
+  color: var(--pink-dark);
+  font-weight: 600;
+}
+
+/* ============ MAIN ============ */
+.cms-main {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 32px;
+}
+
+.panel-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.panel-head h2 {
+  font-size: 22px;
+  color: var(--plum);
+}
+
+.panel-desc {
+  color: var(--gray);
+  margin-bottom: 20px;
+  font-size: 14px;
+}
+
+/* ============ ADD FORM ============ */
+.add-form {
+  background: #fff;
+  padding: 24px;
+  border-radius: 12px;
+  margin-bottom: 24px;
+  box-shadow: 0 4px 12px rgba(74, 25, 66, 0.05);
+  border: 1px solid var(--border);
+}
+
+.add-form h3 {
+  font-size: 16px;
+  color: var(--plum);
+  margin-bottom: 16px;
+}
+
+.add-form label {
+  display: block;
+  margin-bottom: 14px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.add-form label small {
+  display: block;
+  font-weight: 400;
+  color: var(--gray);
+  font-size: 12px;
+  margin-top: 2px;
+  margin-bottom: 6px;
+}
+
+.add-form input[type="text"],
+.add-form input[type="url"],
+.add-form input[type="email"],
+.add-form input:not([type]),
+.add-form select,
+.add-form textarea {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  font-size: 14px;
+  font-family: inherit;
+  margin-top: 6px;
+  background: #fff;
+}
+
+.add-form input:focus,
+.add-form select:focus,
+.add-form textarea:focus {
+  outline: none;
+  border-color: var(--pink);
+}
+
+.add-form input[type="file"] {
+  width: 100%;
+  padding: 8px 0;
+  font-size: 14px;
+  margin-top: 6px;
+}
+
+.form-actions {
+  display: flex;
+  gap: 8px;
+  justify-content: flex-end;
+  margin-top: 20px;
+  padding-top: 16px;
+  border-top: 1px solid var(--border);
+}
+
+.status {
+  margin-top: 12px;
+  font-size: 13px;
+  color: var(--gray);
+}
+
+.status.success {
+  color: #0a7d3a;
+}
+
+.status.error {
+  color: #d33;
+}
+
+/* ============ ITEM LIST ============ */
+.item-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.item-card {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 14px;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 6px rgba(74, 25, 66, 0.04);
+  border: 1px solid var(--border);
+}
+
+.item-card img {
+  width: 72px;
+  height: 72px;
+  object-fit: cover;
+  border-radius: 8px;
+  background: var(--cream);
+  flex-shrink: 0;
+}
+
+.item-card .no-thumb {
+  width: 72px;
+  height: 72px;
+  border-radius: 8px;
+  background: var(--cream);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--gray);
+  font-size: 10px;
+  text-align: center;
+  flex-shrink: 0;
+  border: 1px dashed var(--border);
+}
+
+.item-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.item-info strong {
+  display: block;
+  color: var(--plum);
+  font-size: 15px;
+  margin-bottom: 2px;
+}
+
+.item-info small {
+  color: var(--gray);
+  font-size: 13px;
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.item-info a {
+  color: var(--pink-dark);
+  font-size: 13px;
+  text-decoration: none;
+}
+
+.item-info a:hover {
+  text-decoration: underline;
+}
+
+.item-actions {
+  display: flex;
+  gap: 6px;
+  flex-shrink: 0;
+}
+
+.item-actions button {
+  padding: 8px 10px;
+  border: 1px solid var(--border);
+  background: #fff;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 12px;
+  font-family: inherit;
+  color: var(--text);
+  transition: all 0.15s;
+}
+
+.item-actions button:hover {
+  background: var(--pink-light);
+  border-color: var(--pink);
+}
+
+.item-actions button.danger:hover {
+  background: #fee;
+  border-color: #d33;
+  color: #d33;
+}
+
+/* ============ SETTINGS ============ */
+.setting-row {
+  background: #fff;
+  padding: 18px;
+  border-radius: 12px;
+  margin-bottom: 12px;
+  border: 1px solid var(--border);
+}
+
+.setting-row label {
+  display: block;
+  font-weight: 600;
+  font-size: 13px;
+  color: var(--plum);
+  margin-bottom: 8px;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+}
+
+.setting-row textarea {
+  width: 100%;
+  min-height: 80px;
+  padding: 10px 12px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  font-family: inherit;
+  font-size: 14px;
+  resize: vertical;
+}
+
+.setting-row textarea:focus {
+  outline: none;
+  border-color: var(--pink);
+}
+
+.setting-row button {
+  margin-top: 8px;
+  padding: 8px 16px;
+  background: var(--pink);
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 600;
+  font-family: inherit;
+}
+
+.setting-row button:hover {
+  background: var(--pink-dark);
+}
+
+/* ============ MOBILE ============ */
+@media (max-width: 600px) {
+  .cms-header,
+  .tabs,
+  .cms-main {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  .item-card {
+    flex-wrap: wrap;
+  }
+
+  .item-actions {
+    width: 100%;
+    justify-content: flex-end;
+  }
+}
