@@ -437,25 +437,71 @@ body {
   border-color: var(--pink);
 }
 
-.setting-row button {
-  margin-top: 8px;
-  padding: 8px 16px;
-  background: var(--pink);
-  color: #fff;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-  font-size: 13px;
-  font-weight: 600;
-  font-family: inherit;
+.setting-display {
+  background: var(--cream);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 10px 12px;
+  font-size: 14px;
+  line-height: 1.5;
+  white-space: pre-wrap;
+  word-break: break-word;
+  min-height: 40px;
+  color: var(--text);
 }
 
-.setting-row button:hover {
-  background: var(--pink-dark);
+.setting-actions {
+  margin-top: 10px;
+  display: flex;
+  gap: 8px;
+}
+
+.setting-row.is-editing {
+  border-color: var(--pink);
+  background: #fff;
+}
+
+/* ============ INLINE EDIT FORM ============ */
+.inline-edit-form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.inline-edit-form label {
+  display: block;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.inline-edit-form input,
+.inline-edit-form textarea {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  font-family: inherit;
+  font-size: 14px;
+  margin-top: 6px;
+  background: #fff;
+}
+
+.inline-edit-form input:focus,
+.inline-edit-form textarea:focus {
+  outline: none;
+  border-color: var(--pink);
+}
+
+.inline-edit-form .form-actions {
+  margin-top: 8px;
+  padding-top: 12px;
 }
 
 /* ============ MOBILE ============ */
 @media (max-width: 600px) {
+
   .cms-header,
   .tabs,
   .cms-main {
