@@ -1,174 +1,242 @@
 <!doctype html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Nora CMS</title>
-  <link rel="stylesheet" href="admin.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nora</title>
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Fredoka:wght@600;700&family=Playfair+Display:ital,wght@0,500;0,600;1,500&family=Poppins:wght@400;500;600&display=swap"
+    rel="stylesheet" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Fredoka:wght@600;700&family=Poppins:wght@400;500;600&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
 </head>
+
 <body>
-
-  <!-- ============ LOGIN VIEW ============ -->
-  <div id="login-view" class="view">
-    <form id="login-form">
-      <h1>Nora CMS</h1>
-      <p class="subtitle">Sign in to manage your site</p>
-      <input type="email" id="email" placeholder="Email" required autocomplete="email">
-      <input type="password" id="password" placeholder="Password" required autocomplete="current-password">
-      <button type="submit">Log In</button>
-      <p id="login-error" class="error"></p>
-    </form>
-  </div>
-
-  <!-- ============ APP VIEW ============ -->
-  <div id="app-view" class="view hidden">
-
-    <header class="cms-header">
-      <h1>Nora CMS</h1>
-      <div class="header-actions">
-        <a href="/" target="_blank" class="btn-ghost">View Site ↗</a>
-        <button id="logout" class="btn-ghost">Log Out</button>
-      </div>
-    </header>
-
-    <nav class="tabs">
-      <button data-tab="portfolio" class="tab active">Portfolio</button>
-      <button data-tab="contact" class="tab">Contact</button>
-      <button data-tab="content" class="tab">Content Cards</button>
-      <button data-tab="settings" class="tab">Site Text</button>
+  <header class="navbar">
+    <a href="#home" class="logo">Nora Of The Good Life 🌻🏖️</a>
+    <nav class="nav-buttons">
+      <a href="#home" class="nav-btn">Home</a>
+      <a href="#about" class="nav-btn">About</a>
+      <a href="#content" class="nav-btn">Content</a>
+      <a href="#portfolio" class="nav-btn">Portfolio</a>
+      <a href="#work" class="nav-btn cta">Work with Nora</a>
+      <a href="#contact" class="nav-btn">Contact</a>
     </nav>
+  </header>
 
-    <main class="cms-main">
-
-      <!-- ============ PORTFOLIO TAB ============ -->
-      <section id="tab-portfolio" class="tab-panel">
-
-        <div class="panel-head">
-          <h2>Portfolio Items</h2>
-          <button id="open-add-portfolio" class="btn-primary">+ Add Item</button>
+  <main>
+    <!-- ================= PHOTO 1 — spans Home + About Nora ================= -->
+    <div class="photo-zone-1" style="--bg-image: url(&quot;assets/img-1.jpg&quot;)">
+      <section id="home" class="section hero-section">
+        <div class="section-inner">
+          <p class="eyebrow">Welcome to my corner of the Good Life!</p>
+          <h1 class="hero-heading">Hi, I'm Nora</h1>
+          <p class="hero-text">
+            A Lifestyle Creator and Storyteller based in Benin City, Nigeria,
+            sharing her journey, experiences and everyday inspiring moments of
+            life I lead.
+          </p>
         </div>
-
-        <!-- Add form (hidden by default) -->
-        <form id="add-portfolio" class="add-form hidden">
-          <h3>New Portfolio Item</h3>
-
-          <label>
-            Title
-            <input name="title" placeholder="e.g. Chop Life" required>
-          </label>
-
-          <label>
-            Video URL
-            <input name="url" type="url" placeholder="https://www.tiktok.com/..." required>
-          </label>
-
-          <label>
-            Platform
-            <select name="platform">
-              <option value="tiktok">TikTok</option>
-              <option value="instagram">Instagram</option>
-              <option value="youtube">YouTube</option>
-              <option value="other">Other</option>
-            </select>
-          </label>
-
-          <label>
-            Thumbnail (optional)
-            <small>If auto-fetch fails, upload an image here.</small>
-            <input type="file" name="thumbnail" accept="image/*">
-          </label>
-
-          <div class="form-actions">
-            <button type="button" id="cancel-add-portfolio" class="btn-ghost">Cancel</button>
-            <button type="submit" class="btn-primary" id="add-portfolio-submit">Add Item</button>
-          </div>
-
-          <p id="add-portfolio-status" class="status"></p>
-        </form>
-
-        <div id="portfolio-list" class="item-list"></div>
       </section>
 
-      <!-- ============ CONTACT TAB ============ -->
-      <section id="tab-contact" class="tab-panel hidden">
-        <div class="panel-head">
-          <h2>Contact Info</h2>
-          <button id="open-add-contact" class="btn-primary">+ Add Contact</button>
+      <section id="about" class="section">
+        <div class="section-inner">
+          <h2>About</h2>
+          <p class="section-text-about">
+            What does "The Good Life" mean? In Nora's philosophy, it's
+            intentional living; choosing joy, growth, confidence and adventure
+            while navigating life. It's a reminder to enjoy the journey not
+            just the destination.
+          </p>
         </div>
-
-        <form id="add-contact" class="add-form hidden">
-          <h3>New Contact</h3>
-
-          <label>
-            Platform
-            <select name="platform">
-              <option value="tiktok">TikTok</option>
-              <option value="instagram">Instagram</option>
-              <option value="whatsapp">WhatsApp</option>
-              <option value="email">Email</option>
-            </select>
-          </label>
-
-          <label>
-            Label
-            <input name="label" placeholder="e.g. TikTok" required>
-          </label>
-
-          <label>
-            Display value
-            <input name="value" placeholder="e.g. nora_of_the_goodlife" required>
-          </label>
-
-          <label>
-            Link (optional for email)
-            <input name="url" placeholder="https://...">
-          </label>
-
-          <div class="form-actions">
-            <button type="button" id="cancel-add-contact" class="btn-ghost">Cancel</button>
-            <button type="submit" class="btn-primary">Add Contact</button>
-          </div>
-        </form>
-
-        <div id="contact-list" class="item-list"></div>
       </section>
+    </div>
 
-      <!-- ============ CONTENT TAB ============ -->
-      <section id="tab-content" class="tab-panel hidden">
-        <div class="panel-head">
-          <h2>Content Cards</h2>
-          <button id="open-add-content" class="btn-primary">+ Add Card</button>
+    <!-- ================= PHOTO 2 — spans Content + Portfolio ================= -->
+    <div class="photo-zone-2" style="--bg-image: url(&quot;assets/img-2.jpg&quot;)">
+      <section id="content" class="section">
+        <div class="section-inner">
+          <h2>What I create</h2>
+          <div class="content-grid">
+            <div class="content-card">
+              <h3>Lifestyle</h3>
+              <p>
+                ✨ I capture the art of everyday living; from food, fashion,
+                events and discovering exciting experiences around me. My
+                content is personalized on enjoying and sharing goodness! 💝
+              </p>
+            </div>
+            <div class="content-card">
+              <h3>Beauty</h3>
+              <p>
+                😻 Exploring natural beauty, I share product updates, makeup,
+                haircare and selfcare routines as relatable for my audience to
+                connect with! 💇🏽‍♀️
+              </p>
+            </div>
+            <div class="content-card">
+              <h3>Travel</h3>
+              <p>
+                As i explore new places, i create travel and discovery
+                contents that showcase hotels, restaurants, hidden gems &
+                landmarks which gives my audience ideas on where to go
+                (vacation or naturalization) and anticipate unique
+                experiences! ✈️🌍
+              </p>
+            </div>
+          </div>
         </div>
+      </section>
 
-        <form id="add-content" class="add-form hidden">
-          <h3>New Content Card</h3>
-          <label>
-            Title
-            <input name="title" placeholder="e.g. Lifestyle" required>
-          </label>
-          <label>
-            Body
-            <textarea name="body" rows="4" required></textarea>
-          </label>
-          <div class="form-actions">
-            <button type="button" id="cancel-add-content" class="btn-ghost">Cancel</button>
-            <button type="submit" class="btn-primary">Add Card</button>
+      <section id="portfolio" class="section">
+        <div class="section-inner">
+          <h2>Portfolio</h2>
+          <div class="portfolio-grid">
+
+            <figure class="portfolio-item">
+              <figcaption class="portfolio-title">Who Is Nora</figcaption>
+              <a href="https://www.tiktok.com/@nora_of_the_goodlife/video/7675454520335404308?is_from_webapp=1&sender_device=pc"
+                target="_blank" rel="noopener">
+                <img class="portfolio-1" src="assets/who-is-nora.jpg" alt="Who Is Nora">
+              </a>
+            </figure>
+
+            <figure class="portfolio-item">
+              <figcaption class="portfolio-title">Chop Life</figcaption>
+              <a href="https://www.tiktok.com/@nora_of_the_goodlife/video/7675911535209860373?is_from_webapp=1&sender_device=pc"
+                target="_blank" rel="noopener">
+                <img class="portfolio-2" src="assets/chop-life-4 (1).jpg" alt="Chop Life">
+              </a>
+            </figure>
+
+            <figure class="portfolio-item">
+              <figcaption class="portfolio-title">Circle Restaurant</figcaption>
+              <a href="https://www.tiktok.com/@nora_of_the_goodlife/video/7475733874744610066?is_from_webapp=1&sender_device=pc"
+                target="_blank" rel="noopener">
+                <img class="portfolio-3" src="assets/circle-restaurant.jpg" alt="Circle Restaurant">
+              </a>
+            </figure>
+
+            <figure class="portfolio-item">
+              <figcaption class="portfolio-title">Transeat</figcaption>
+              <a href="https://www.tiktok.com/@nora_of_the_goodlife/video/7672021523774901524?is_from_webapp=1&sender_device=pc"
+                target="_blank" rel="noopener">
+                <img class="portfolio-4" src="assets/transeat-1.jpg" alt="Transeat">
+              </a>
+            </figure>
+
+            <figure class="portfolio-item">
+              <figcaption class="portfolio-title">Chop Life II</figcaption>
+              <a href="https://www.tiktok.com/@nora_of_the_goodlife/video/7611221269039697173?is_from_webapp=1&sender_device=pc"
+                target="_blank" rel="noopener">
+                <img class="portfolio-5" src="assets/chop-life-5.jpg" alt="Chop Life II">
+              </a>
+            </figure>
+
+            <figure class="portfolio-item">
+              <figcaption class="portfolio-title">Fashion</figcaption>
+              <a href="https://www.tiktok.com/@nora_of_the_goodlife/video/7668759550538845461?is_from_webapp=1&sender_device=pc"
+                target="_blank" rel="noopener">
+                <img class="portfolio-6" src="assets/fashion.jpg" alt="Fashion">
+              </a>
+            </figure>
+
+            <figure class="portfolio-item">
+              <figcaption class="portfolio-title">Relaxer</figcaption>
+              <a href="https://www.tiktok.com/@nora_of_the_goodlife/video/7482764968497073415?is_from_webapp=1&sender_device=pc"
+                target="_blank" rel="noopener">
+                <img class="portfolio-7" src="assets/relaxer.jpg" alt="Relaxer">
+              </a>
+            </figure>
+
+            <figure class="portfolio-item">
+              <figcaption class="portfolio-title">Chop Life III</figcaption>
+              <a href="https://www.tiktok.com/@nora_of_the_goodlife/video/7516514887372246278?is_from_webapp=1&sender_device=pc"
+                target="_blank" rel="noopener">
+                <img class="portfolio-8" src="assets/chop-life-2.jpg" alt="Chop Life III">
+              </a>
+            </figure>
+
+            <figure class="portfolio-item">
+              <figcaption class="portfolio-title">Teeth Whitening</figcaption>
+              <a href="https://www.tiktok.com/@nora_of_the_goodlife/video/7507243261539405061?is_from_webapp=1&sender_device=pc"
+                target="_blank" rel="noopener">
+                <img class="portfolio-9" src="assets/teeth-whitening.jpg" alt="Teeth Whitening">
+              </a>
+            </figure>
+
           </div>
-        </form>
-
-        <div id="content-list" class="item-list"></div>
+        </div>
       </section>
+    </div>
 
-      <!-- ============ SETTINGS TAB ============ -->
-      <section id="tab-settings" class="tab-panel hidden">
-        <h2>Site Text</h2>
-        <p class="panel-desc">Edit the text that appears on your public site.</p>
-        <div id="settings-list"></div>
+    <!-- ================= NO PHOTO — solid color break instead ================= -->
+    <section id="work" class="section work-section">
+      <div class="section-inner">
+        <h2>Work with Nora</h2>
+        <p class="section-text">
+          <span class="brand-name">Nora_of_the_good_life</span> partners with
+          brands that align with her lifestyle, audience and values to create
+          authentic, engaging content that people can connect with.
+        </p>
+        <ul class="collab-list">
+          <li>Sponsored posts &amp; reels</li>
+          <li>Brand ambassadorships</li>
+          <li>Product reviews</li>
+          <li>Event appearances</li>
+        </ul>
+
+        <a href="#contact" class="btn btn-primary">Let's Collaborate</a>
+      </div>
+    </section>
+
+    <!-- ================= PHOTO 3 — Contact only ================= -->
+    <div class="photo-zone-3" style="--bg-image: url(&quot;assets/img-3.JPG&quot;)">
+      <section id="contact" class="section">
+        <div class="section-inner-last">
+          <h2>Contact</h2>
+
+          <div class="contact-list">
+            <a class="contact-link" href="https://www.tiktok.com/@nora_of_the_goodlife?lang=en" target="_blank"
+              rel="noopener">
+              <span class="contact-icon contact-icon--whatsapp">
+                <img src="assets/tik-tok.png" alt="TikTok" />
+              </span>
+              <span class="contact-value">nora_of_the_goodlife</span>
+            </a>
+
+            <a class="contact-link" href="https://www.instagram.com/nora_of_the_goodlife/" target="_blank"
+              rel="noopener">
+              <span class="contact-icon contact-icon--instagram">
+                <img src="assets/instagram.png" alt="Instagram" />
+              </span>
+              <span class="contact-value">nora_of_the_goodlife</span>
+            </a>
+
+            <a class="contact-link" href="https://wa.me/2348128491367" target="_blank" rel="noopener">
+              <span class="contact-icon contact-icon--whatsapp">
+                <img src="assets/whatsapp.png" alt="WhatsApp" />
+              </span>
+              <span class="contact-value">+234 812-849-1367</span>
+            </a>
+
+            <a class="contact-link" href="mailto:mininora25@gmail.com">
+              <span class="contact-icon contact-icon--gmail">
+                <img src="assets/gmail.png" alt="Gmail" />
+              </span>
+              <span class="contact-value">mininora25@gmail.com</span>
+            </a>
+          </div>
+        </div>
       </section>
-
-    </main>
-  </div>
-
-  <script type="module" src="admin.js"></script>
+    </div>
+  </main>
 </body>
+
 </html>
