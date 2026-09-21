@@ -1,39 +1,46 @@
-  :root{
+  :root {
     /* ===== BRAND COLORS — pink accent + supporting palette ===== */
-    --pink-primary: #FF5C8A;   /* main accent — buttons, highlights */
-    --pink-dark:    #E63E72;   /* hover state for pink elements */
-    --pink-light:   #FFE3EC;   /* soft pink — hover backgrounds, tints */
-    --coral:        #FF9166;   /* warm secondary — adds energy */
-    --plum:         #4A1942;   /* deep contrast — logo, confident text */
-    --cream:        #FFF8F5;   /* warm background instead of stark white */
-    --text-dark:    #3A2430;   /* body text — warm near-black */
-    --white:        #FFFFFF;
+    --pink-primary: #FF5C8A;
+    /* main accent — buttons, highlights */
+    --pink-dark: #E63E72;
+    /* hover state for pink elements */
+    --pink-light: #FFE3EC;
+    /* soft pink — hover backgrounds, tints */
+    --coral: #FF9166;
+    /* warm secondary — adds energy */
+    --plum: #4A1942;
+    /* deep contrast — logo, confident text */
+    --cream: #FFF8F5;
+    /* warm background instead of stark white */
+    --text-dark: #3A2430;
+    /* body text — warm near-black */
+    --white: #FFFFFF;
     --navbar-height: 84px;
   }
 
-  *{
+  * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
   }
 
-  html{
+  html {
     scroll-behavior: smooth;
   }
 
-  body{
+  body {
     font-family: 'Poppins', sans-serif;
     background-color: var(--cream);
     color: var(--text-dark);
   }
 
-  a{
+  a {
     text-decoration: none;
     color: inherit;
   }
 
   /* ===== HEADER ===== */
-  .navbar{
+  .navbar {
     position: sticky;
     top: 0;
     z-index: 100;
@@ -48,23 +55,28 @@
   }
 
   .logo{
-    font-family: 'Fredoka', sans-serif;
-    font-weight: 700;
-    font-size: 28px;
-    background: linear-gradient(90deg, var(--pink-primary), var(--coral));
-    -webkit-background-clip: text;
-    background-clip: text;
-    letter-spacing: 0.5px;
-  }
+  font-family: 'Fredoka', sans-serif;
+  font-weight: 700;
+  font-size: 28px;
+  background: linear-gradient(90deg, var(--pink-primary), var(--coral));
+  -webkit-background-clip: text;
+  background-clip: text;
+  letter-spacing: 0.5px;
 
-  .nav-buttons{
+  /* ---- Keep it on one line ---- */
+  white-space: nowrap;
+  flex-shrink: 0;
+  min-width: 0;
+}
+
+  .nav-buttons {
     display: flex;
     align-items: center;
     flex-wrap: wrap;
     gap: 8px;
   }
 
-  .nav-btn{
+  .nav-btn {
     font-family: 'Poppins', sans-serif;
     font-weight: 500;
     font-size: 14.5px;
@@ -77,17 +89,17 @@
     transition: background-color 0.25s ease, color 0.25s ease, transform 0.2s ease;
   }
 
-  .nav-btn:hover{
+  .nav-btn:hover {
     background-color: var(--pink-light);
     color: var(--pink-dark);
   }
 
-  .nav-btn:focus-visible{
+  .nav-btn:focus-visible {
     outline: 2px solid var(--pink-primary);
     outline-offset: 2px;
   }
 
-  .nav-btn.cta{
+  .nav-btn.cta {
     background-color: var(--pink-primary);
     color: var(--white);
     font-weight: 600;
@@ -95,27 +107,29 @@
     box-shadow: 0 4px 14px rgba(255, 92, 138, 0.35);
   }
 
-  .nav-btn.cta:hover{
+  .nav-btn.cta:hover {
     background-color: var(--pink-dark);
     transform: translateY(-1px);
     box-shadow: 0 6px 18px rgba(230, 62, 114, 0.4);
   }
 
-  @media (max-width: 720px){
-    .navbar{
+  @media (max-width: 720px) {
+    .navbar {
       justify-content: center;
       text-align: center;
     }
-    .nav-buttons{
+
+    .nav-buttons {
       justify-content: center;
     }
-    .nav-btn{
+
+    .nav-btn {
       font-size: 14px;
       padding: 9px 14px;
     }
   }
 
-/* =====================================================
+  /* =====================================================
    PHOTO ZONES
    A "photo zone" is a wrapper <div> that can hold ONE or
    MORE <section> elements.
@@ -132,204 +146,202 @@
    ===================================================== */
 
 
-/* ===== GENERAL PHOTO ZONE SETTINGS ===== */
+  /* ===== GENERAL PHOTO ZONE SETTINGS ===== */
 
-.photo-zone-1,
-.photo-zone-2,
-.photo-zone-3 {
-  position: relative;
+  .photo-zone-1,
+  .photo-zone-2,
+  .photo-zone-3 {
+    position: relative;
 
-  /* Keeps the background layers contained inside
+    /* Keeps the background layers contained inside
      their respective photo zone */
-  isolation: isolate;
+    isolation: isolate;
 
-  /* Prevents the background from creating
+    /* Prevents the background from creating
      unwanted overflow outside the section */
-  overflow: hidden;
-}
+    overflow: hidden;
+  }
 
 
-/* =====================================================
+  /* =====================================================
    BACKGROUND IMAGE
    ===================================================== */
 
 
-.photo-zone-1::before,
-.photo-zone-2::before,
-.photo-zone-3::before {
+  .photo-zone-1::before,
+  .photo-zone-2::before,
+  .photo-zone-3::before {
 
-  /* Required for the pseudo-element to appear */
-  content: "";
+    /* Required for the pseudo-element to appear */
+    content: "";
 
-  /* Makes the background layer cover the
+    /* Makes the background layer cover the
      entire photo zone */
-  position: absolute;
-  inset: 0;
+    position: absolute;
+    inset: 0;
 
-  /* Places the image behind the content */
-  z-index: -2;
+    /* Places the image behind the content */
+    z-index: -2;
 
-  /* Uses the image specified in the HTML:
+    /* Uses the image specified in the HTML:
      style="--bg-image:url('...')" */
-  background-image: var(--bg-image);
+    background-image: var(--bg-image);
 
-  /* Makes the image fill the entire section
+    /* Makes the image fill the entire section
      while keeping its original proportions.
 
      IMPORTANT:
      "cover" prevents stretching/distortion,
      but may crop some parts of the image. */
-  background-size: cover;
+    background-size: cover;
 
-  /* Stops the image from repeating */
-  background-repeat: no-repeat;
+    /* Stops the image from repeating */
+    background-repeat: no-repeat;
 
-  /* Keeps the center of the photograph visible */
-  background-position: center center;
-}
+    /* Keeps the center of the photograph visible */
+    background-position: center center;
+  }
 
   /* ===== PHOTO 1 — HOME + ABOUT ===== */
 
-.photo-zone-1::before {
+  .photo-zone-1::before {
 
-  /* Keeps more of the upper part of the photograph
+    /* Keeps more of the upper part of the photograph
      visible so the head isn't hidden behind the header */
-  background-position: center 40%;
-}
+    background-position: center 40%;
+  }
 
-/* =====================================================
+  /* =====================================================
    SOFT COLOR OVERLAY
    This creates the gentle pink/cream appearance
    over the photographs.
    ===================================================== */
 
-.photo-zone-1::after,
-.photo-zone-2::after,
-.photo-zone-3::after {
+  .photo-zone-1::after,
+  .photo-zone-2::after,
+  .photo-zone-3::after {
 
-  content: "";
+    content: "";
 
-  /* Makes the overlay cover the entire photo zone */
-  position: absolute;
-  inset: 0;
+    /* Makes the overlay cover the entire photo zone */
+    position: absolute;
+    inset: 0;
 
-  /* Places the overlay above the image but
+    /* Places the overlay above the image but
      underneath the website content */
-  z-index: -1;
+    z-index: -1;
 
-  /* Soft cream/pink gradient over the photograph */
-  background: linear-gradient(
-    180deg,
-    rgba(255, 248, 245, 0.90),
-    rgba(255, 227, 236, 0.10)
-  );
-}
+    /* Soft cream/pink gradient over the photograph */
+    background: linear-gradient(180deg,
+        rgba(255, 248, 245, 0.90),
+        rgba(255, 227, 236, 0.10));
+  }
 
 
-/* =====================================================
+  /* =====================================================
    DESKTOP
    Screens 1024px and wider
    ===================================================== */
 
-@media (min-width: 1024px) {
+  @media (min-width: 1024px) {
 
-  .photo-zone-1::before,
-  .photo-zone-2::before,
-  .photo-zone-3::before {
+    .photo-zone-1::before,
+    .photo-zone-2::before,
+    .photo-zone-3::before {
 
-    /* Gives the desktop version a gentle
+      /* Gives the desktop version a gentle
        parallax effect while scrolling */
-    background-attachment: fixed;
+      background-attachment: fixed;
+    }
+
   }
 
-}
 
-
-/* =====================================================
+  /* =====================================================
    TABLET
    Screens between 721px and 1023px
    ===================================================== */
 
-@media (min-width: 721px) and (max-width: 1023px) {
+  @media (min-width: 721px) and (max-width: 1023px) {
 
-  .photo-zone-1::before {
+    .photo-zone-1::before {
 
-    /* Controls which part of image 1 stays visible */
-    background-position: center 40%;
+      /* Controls which part of image 1 stays visible */
+      background-position: center 40%;
+    }
+
+    .photo-zone-2::before {
+
+      /* Controls which part of image 2 stays visible */
+      background-position: center 45%;
+    }
+
+    .photo-zone-3::before {
+
+      /* Controls which part of image 3 stays visible */
+      background-position: center 45%;
+    }
+
   }
 
-  .photo-zone-2::before {
 
-    /* Controls which part of image 2 stays visible */
-    background-position: center 45%;
-  }
-
-  .photo-zone-3::before {
-
-    /* Controls which part of image 3 stays visible */
-    background-position: center 45%;
-  }
-
-}
-
-
-/* =====================================================
+  /* =====================================================
    MOBILE / PORTRAIT
    Screens 720px and below
    ===================================================== */
 
-@media (max-width: 720px) {
+  @media (max-width: 720px) {
 
-  .photo-zone-1::before,
-  .photo-zone-2::before,
-  .photo-zone-3::before {
+    .photo-zone-1::before,
+    .photo-zone-2::before,
+    .photo-zone-3::before {
 
-    /* Makes sure the photograph fills the
+      /* Makes sure the photograph fills the
        portrait screen without distortion */
-    background-size: cover;
+      background-size: cover;
 
-    /* Fixed backgrounds can behave badly on
+      /* Fixed backgrounds can behave badly on
        phones, especially mobile Safari.
 
        "scroll" makes the background move normally
        with the page. */
-    background-attachment: scroll;
-  }
+      background-attachment: scroll;
+    }
 
 
-  /* ===== PHOTO 1 — HOME + ABOUT ===== */
+    /* ===== PHOTO 1 — HOME + ABOUT ===== */
 
-  .photo-zone-1::before {
+    .photo-zone-1::before {
 
-    /* Keeps the middle of image 1 visible
+      /* Keeps the middle of image 1 visible
        on narrow portrait screens */
-    background-position: center center;
-  }
+      background-position: center center;
+    }
 
 
-  /* ===== PHOTO 2 — CONTENT + PORTFOLIO ===== */
+    /* ===== PHOTO 2 — CONTENT + PORTFOLIO ===== */
 
-  .photo-zone-2::before {
+    .photo-zone-2::before {
 
-    /* Keeps the middle of image 2 visible
+      /* Keeps the middle of image 2 visible
        on narrow portrait screens */
-    background-position: center center;
-  }
+      background-position: center center;
+    }
 
 
-  /* ===== PHOTO 3 — CONTACT ===== */
+    /* ===== PHOTO 3 — CONTACT ===== */
 
-  .photo-zone-3::before {
+    .photo-zone-3::before {
 
-    /* Keeps the middle of image 3 visible
+      /* Keeps the middle of image 3 visible
        on narrow portrait screens */
-    background-position: center center;
+      background-position: center center;
+    }
+
   }
 
-}
 
-
-/* =====================================================
+  /* =====================================================
    IMPORTANT NOTE:
    
    "background-size: cover" keeps the image from
@@ -355,104 +367,106 @@
 
 
   /* ===== SHARED SECTION STYLES ===== */
-  .section{
+  .section {
     scroll-margin-top: var(--navbar-height);
     padding: 110px 6%;
     display: flex;
     justify-content: center;
   }
 
-  .section #home{
+  .section #home {
     scroll-margin-top: var(--navbar-height);
     padding-top: 10px 6%;
     display: flex;
     justify-content: center;
   }
 
-  .section-inner{
+  .section-inner {
     width: 100%;
     max-width: 720px;
     text-align: center;
   }
 
-  .section-inner-last{
+  .section-inner-last {
     width: 100%;
     max-width: 720px;
     text-align: bottom;
   }
 
-.eyebrow{
-  font-family: 'Playfair Display', serif;
-  font-style: italic;
-  font-weight: 500;
-  font-size: 19px;
-  letter-spacing: 0.5px;
-  text-transform: none;
-  color: var(--plum);
+  .eyebrow {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-weight: 500;
+    font-size: 19px;
+    letter-spacing: 0.5px;
+    text-transform: none;
+    color: var(--plum);
 
-  display: inline-block;
-  padding: 10px 26px;
-  margin-bottom: 22px;
-  border-radius: 999px;
+    display: inline-block;
+    padding: 10px 26px;
+    margin-bottom: 22px;
+    border-radius: 999px;
 
-  background: rgba(255, 248, 245, 0.75);
-  border: 1px solid rgba(74, 25, 66, 0.12);
-  backdrop-filter: blur(6px);
-  -webkit-backdrop-filter: blur(6px);
-}
+    background: rgba(255, 248, 245, 0.75);
+    border: 1px solid rgba(74, 25, 66, 0.12);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+  }
 
-.eyebrow::before,
-.eyebrow::after{
-  content: "";
-  width: 32px;
-  height: 1px;
-  background: var(--coral);
-  opacity: 0.6;
-}
-  .section h2{
+  .eyebrow::before,
+  .eyebrow::after {
+    content: "";
+    width: 32px;
+    height: 1px;
+    background: var(--coral);
+    opacity: 0.6;
+  }
+
+  .section h2 {
     font-family: 'Fredoka', sans-serif;
     font-size: 34px;
     color: var(--plum);
     margin-bottom: 16px;
   }
 
-  #about h2{
-  font-family: 'Playfair Display', serif;
-  font-weight: 500;
-  font-size: 30px;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  color: var(--plum);
-}
+  #about h2 {
+    font-family: 'Playfair Display', serif;
+    font-weight: 500;
+    font-size: 30px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--plum);
+  }
 
-  .section-text{
+  .section-text {
     font-size: 16px;
     line-height: 1.7;
     color: var(--text-dark);
   }
 
-  .brand-name{
-  font-family: 'Fredoka', sans-serif;
-  font-weight: 600;
-  color: var(--white);
-}
+  .brand-name {
+    font-family: 'Fredoka', sans-serif;
+    font-weight: 600;
+    color: var(--white);
+  }
 
-.section-text-about{
-  font-family: 'Poppins', sans-serif;
-  font-size: 15.5px;
-  line-height: 1.85;
-  color: var(--text-dark);
+  .section-text-about {
+    font-family: 'Poppins', sans-serif;
+    font-size: 15.5px;
+    line-height: 1.85;
+    color: var(--text-dark);
 
-  display: inline-block;
-  max-width: 520px;
-  padding: 24px 28px;
-  border-radius: 40px;
-  border: 1px solid rgba(74, 25, 66, 0.18);
-  background: rgba(255, 255, 255, 0.55);
-  backdrop-filter: blur(4px);
-  -webkit-backdrop-filter: blur(4px);
-}
-  .btn{
+    display: inline-block;
+    max-width: 520px;
+    padding: 24px 28px;
+    border-radius: 40px;
+    border: 1px solid rgba(74, 25, 66, 0.18);
+    background: rgba(255, 255, 255, 0.55);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+  }
+
+  .btn {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -464,152 +478,164 @@
     width: fit-content;
   }
 
-  .btn-primary{
+  .btn-primary {
     background-color: var(--pink-primary);
     color: var(--white);
     box-shadow: 0 4px 14px rgba(255, 92, 138, 0.35);
     transition: background-color 0.25s ease, transform 0.2s ease;
   }
 
-  .btn-primary:hover{
+  .btn-primary:hover {
     background-color: var(--pink-dark);
     transform: translateY(-1px);
   }
 
-  #contact{
-  justify-content: flex-start;   /* horizontal — pushes it to the left */
-  align-items: flex-start;       /* vertical — pushes it to the top */
-  min-height: 100vh;             /* needed so "top" has room to mean something */
-}
+  #contact {
+    justify-content: flex-start;
+    /* horizontal — pushes it to the left */
+    align-items: flex-start;
+    /* vertical — pushes it to the top */
+    min-height: 100vh;
+    /* needed so "top" has room to mean something */
+  }
 
-#contact .section-inner{
-  text-align: left;
-  max-width: 400px;              /* optional — stops text stretching edge-to-edge now that it's not centered */
-}
+  #contact .section-inner {
+    text-align: left;
+    max-width: 400px;
+    /* optional — stops text stretching edge-to-edge now that it's not centered */
+  }
 
-/* ===== CONTACT LIST ===== */
-.contact-list{
-  margin-top: 26px;
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
-  align-items: flex-start;   /* ← add this: stops children stretching full width */
-}
+  /* ===== CONTACT LIST ===== */
+  .contact-list {
+    margin-top: 26px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    align-items: flex-start;
+    /* ← add this: stops children stretching full width */
+  }
 
-.contact-link{
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  padding: 14px 18px;
-  border-radius: 16px;
-  background: rgba(255,255,255,0.65);
-  border: 1px solid rgba(74,25,66,0.08);
-  transition: background-color 0.25s ease, transform 0.2s ease, border-color 0.25s ease;
-}
+  .contact-link {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 14px 18px;
+    border-radius: 16px;
+    background: rgba(255, 255, 255, 0.65);
+    border: 1px solid rgba(74, 25, 66, 0.08);
+    transition: background-color 0.25s ease, transform 0.2s ease, border-color 0.25s ease;
+  }
 
-.contact-link:hover{
-  background: var(--white);
-  border-color: var(--pink-primary);
-  transform: translateY(-1px);
-}
+  .contact-link:hover {
+    background: var(--white);
+    border-color: var(--pink-primary);
+    transform: translateY(-1px);
+  }
 
-.contact-link:focus-visible{
-  outline: 2px solid var(--pink-primary);
-  outline-offset: 2px;
-}
+  .contact-link:focus-visible {
+    outline: 2px solid var(--pink-primary);
+    outline-offset: 2px;
+  }
 
-.contact-icon{
-  flex-shrink: 0;
-  width: 42px;
-  height: 42px;
-  border-radius: 50%;
-  background-color: var(--pink-primary);
-  color: var(--white);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
+  .contact-icon {
+    flex-shrink: 0;
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    background-color: var(--pink-primary);
+    color: var(--white);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
 
-.contact-icon svg{
-  width: 20px;
-  height: 20px;
-}
+  .contact-icon svg {
+    width: 20px;
+    height: 20px;
+  }
 
-.contact-icon--whatsapp{
-  background: transparent;   /* the image already has its own black circle */
-}
+  .contact-icon--whatsapp {
+    background: transparent;
+    /* the image already has its own black circle */
+  }
 
-.contact-icon--whatsapp img,
-.contact-icon--gmail img{
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  border-radius: 50%;        /* keeps it clipped to a perfect circle even if the source PNG isn't perfectly cropped */
-}
+  .contact-icon--whatsapp img,
+  .contact-icon--gmail img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+    /* keeps it clipped to a perfect circle even if the source PNG isn't perfectly cropped */
+  }
 
-.contact-icon--instagram{
-  background: transparent;   /* the image already has its own shape/background */
-  border-radius: 26%;        /* squircle — rounded corners, not a full circle */
-  overflow: hidden;          /* clips the image to that rounded-square shape */
-}
+  .contact-icon--instagram {
+    background: transparent;
+    /* the image already has its own shape/background */
+    border-radius: 26%;
+    /* squircle — rounded corners, not a full circle */
+    overflow: hidden;
+    /* clips the image to that rounded-square shape */
+  }
 
-.contact-icon--instagram img{
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  border-radius: 26%;        /* match the parent so corners round consistently */
-}
+  .contact-icon--instagram img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 26%;
+    /* match the parent so corners round consistently */
+  }
 
-.contact-text{
-  display: flex;
-  flex-direction: column;
-  text-align: left;
-}
+  .contact-text {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+  }
 
-.contact-label{
-  font-size: 12px;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-  color: var(--pink-dark);
-}
+  .contact-label {
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: var(--pink-dark);
+  }
 
-.contact-value{
-  font-size: 15px;
-  font-weight: 500;
-  color: var(--text-dark);
-}
+  .contact-value {
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--text-dark);
+  }
 
 
   /* ===== HOME ===== */
-.hero-section{
-  min-height: calc(100vh - var(--navbar-height));
-  align-items: flex-start;
-  margin-top: 0;
-  padding-top: 60px;
-}
+  .hero-section {
+    min-height: calc(100vh - var(--navbar-height));
+    align-items: flex-start;
+    margin-top: 0;
+    padding-top: 60px;
+  }
 
-  .hero-heading{
-  font-family: 'Playfair Display', serif;
-  font-weight: 500;
-  font-size: 64px;
-  line-height: 1.05;
-  letter-spacing: -0.5px;
-  color: var(--plum);
-  margin-bottom: 22px;
-}
+  .hero-heading {
+    font-family: 'Playfair Display', serif;
+    font-weight: 500;
+    font-size: 64px;
+    line-height: 1.05;
+    letter-spacing: -0.5px;
+    color: var(--plum);
+    margin-bottom: 22px;
+  }
 
-.hero-text{
-  font-family: 'Poppins', sans-serif;
-  font-size: 16px;
-  line-height: 1.85;
-  color: var(--text-dark);
-  max-width: 480px;
-  margin: 0 auto;   /* ← add this: centers the box itself within .section-inner */
-}
+  .hero-text {
+    font-family: 'Poppins', sans-serif;
+    font-size: 16px;
+    line-height: 1.85;
+    color: var(--text-dark);
+    max-width: 480px;
+    margin: 0 auto;
+    /* ← add this: centers the box itself within .section-inner */
+  }
 
   /* ===== CONTENT GRID ===== */
-  .content-grid{
+  .content-grid {
     margin-top: 36px;
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
@@ -617,138 +643,206 @@
     text-align: left;
   }
 
-  .content-card{
-    background-color: rgba(255,255,255,0.65);
-    border: 1px solid rgba(74,25,66,0.08);
+  .content-card {
+    background-color: rgba(255, 255, 255, 0.65);
+    border: 1px solid rgba(74, 25, 66, 0.08);
     border-radius: 16px;
     padding: 22px;
   }
 
-  .content-card h3{
+  .content-card h3 {
     font-family: 'Fredoka', sans-serif;
     color: var(--pink-dark);
     margin-bottom: 8px;
   }
 
-  .content-card p{
+  .content-card p {
     font-size: 14px;
     line-height: 1.6;
   }
 
   /* ===== PORTFOLIO GRID ===== */
-  .portfolio-grid{
+    .portfolio-grid {
     margin-top: 36px;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-    gap: 20px;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, auto);
+    gap: 28px;
+    text-align: left;
+    align-items: start;
   }
 
- .portfolio-item{
-  aspect-ratio: 1 / 1;
-  border-radius: 16px;
-  overflow: hidden;              /* ← add this: clips the image to the rounded corners */
-  background-color: rgba(255,255,255,0.5);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--plum);
-  font-size: 13px;
-}
-
-.portfolio-item a{
-  display: block;
-  width: 100%;
-  height: 100%;
-  cursor: pointer;
-}
-
-.portfolio-item img{
-  transition: transform 0.3s ease;
-}
-
-.portfolio-item a:hover img{
-  transform: scale(1.06);
-}
-
-  .portfolio-1{
-  width: 100%;
-  height: 100%;
-  object-fit: cover;             /* ← fills the box, crops overflow, no stretching */
-  object-position: top;       /* ← same idea as background-position, for <img> tags */
-  display: block;                /* removes the small gap browsers add under inline images */
+  .portfolio-item {
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
   }
 
-  .portfolio-2, 
-  .portfolio-3, 
-  .portfolio-4, 
-  .portfolio-5,
-  .portfolio-7,
-  .portfolio-8,
-  .portfolio-9{
-  width: 100%;
-  height: 100%;
-  object-fit: cover;             /* ← fills the box, crops overflow, no stretching */
-  object-position: center;       /* ← same idea as background-position, for <img> tags */
-  display: block;                /* removes the small gap browsers add under inline images */
+  .portfolio-title {
+    font-family: 'Fredoka', sans-serif;
+    font-weight: 600;
+    font-size: 16px;
+    color: var(--plum);
+    letter-spacing: 0.3px;
+    padding-left: 4px;
+    position: relative;
   }
 
-  .portfolio-6{
-  width: 100%;
-  height: 100%;
-  object-fit: cover;             /* ← fills the box, crops overflow, no stretching */
-  object-position: 0 -60px;       /* ← same idea as background-position, for <img> tags */
-  display: block;                /* removes the small gap browsers add under inline images */
+  .portfolio-title::before {
+    content: "";
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: var(--coral);
+    margin-right: 8px;
+    vertical-align: middle;
   }
 
+  .portfolio-item a {
+    display: block;
+    position: relative;
+    aspect-ratio: 1 / 1;
+    border-radius: 18px;
+    overflow: hidden;
+    background-color: rgba(255, 255, 255, 0.5);
+    border: 1px solid rgba(74, 25, 66, 0.08);
+    box-shadow: 0 6px 20px rgba(74, 25, 66, 0.06);
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+  }
+
+  .portfolio-item a:hover {
+    transform: translateY(-4px);
+    border-color: var(--pink-primary);
+    box-shadow: 0 12px 28px rgba(255, 92, 138, 0.22);
+  }
+
+  .portfolio-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+    transition: transform 0.4s ease;
+  }
+
+  .portfolio-item a:hover img {
+    transform: scale(1.06);
+  }
+
+  .portfolio-1 {
+    object-position: top;
+  }
+
+  .portfolio-6 {
+    object-position: 0 -60px;
+  }
+
+    /* ===== PORTFOLIO — SHRINKS TO 3 COLUMNS EVERYWHERE ===== */
+
+  @media (max-width: 900px) {
+    .portfolio-grid {
+      gap: 16px;
+      grid-template-rows: repeat(3, auto);
+    }
+    .portfolio-title {
+      font-size: 13px;
+      padding-left: 2px;
+    }
+    .portfolio-title::before {
+      width: 6px;
+      height: 6px;
+      margin-right: 6px;
+    }
+    .portfolio-item a {
+      border-radius: 14px;
+    }
+  }
+
+  @media (max-width: 560px) {
+    .portfolio-grid {
+      gap: 8px;
+      grid-template-rows: repeat(3, auto);
+    }
+    .portfolio-title {
+      font-size: 11px;
+      letter-spacing: 0.1px;
+      margin-bottom: 2px;
+    }
+    .portfolio-title::before {
+      width: 5px;
+      height: 5px;
+      margin-right: 5px;
+    }
+    .portfolio-item {
+      gap: 6px;
+    }
+    .portfolio-item a {
+      border-radius: 10px;
+    }
+  }
+
+  @media (max-width: 380px) {
+    .portfolio-grid {
+      gap: 6px;
+      grid-template-rows: repeat(3, auto);
+    }
+    .portfolio-title {
+      font-size: 10px;
+    }
+  }
 
 
   /* ===== WORK WITH NORA (intentionally has no photo — solid color break) ===== */
-  .work-section{
+  .work-section {
     background-color: var(--plum);
   }
 
-  .collab-list{
-  list-style: none;          /* removes the default bullet so we can style our own */
-  margin-top: 22px;
-  text-align: left;
-  display: inline-block;     /* so the list can be centered by its parent .section-inner */
-}
+  .collab-list {
+    list-style: none;
+    /* removes the default bullet so we can style our own */
+    margin-top: 22px;
+    text-align: left;
+    display: inline-block;
+    /* so the list can be centered by its parent .section-inner */
+  }
 
-.collab-list li{
-  position: relative;
-  padding-left: 28px;
-  margin-bottom: 14px;
-  font-size: 15.5px;
-  line-height: 1.6;
-  color: rgba(255,255,255,0.85);
-}
+  .collab-list li {
+    position: relative;
+    padding-left: 28px;
+    margin-bottom: 14px;
+    font-size: 15.5px;
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.85);
+  }
 
-.collab-list li::before{
-  content: "";
-  position: absolute;
-  left: 0;
-  top: 8px;
-  width: 9px;
-  height: 9px;
-  border-radius: 50%;
-  background-color: var(--coral);
-}
+  .collab-list li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 8px;
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background-color: var(--coral);
+  }
 
   .work-section h2,
-  .work-section .eyebrow{
+  .work-section .eyebrow {
     color: var(--white);
   }
 
-  .work-section .section-text{
-    color: rgba(255,255,255,0.85);
+  .work-section .section-text {
+    color: rgba(255, 255, 255, 0.85);
   }
 
-  .work-section .btn-primary{
+  .work-section .btn-primary {
     background-color: var(--coral);
     margin-left: auto;
     margin-right: auto;
   }
 
-  .work-section .btn-primary:hover{
+  .work-section .btn-primary:hover {
     background-color: var(--pink-primary);
   }
